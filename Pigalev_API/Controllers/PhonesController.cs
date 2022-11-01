@@ -40,18 +40,41 @@ namespace Pigalev_API.Controllers
         [ResponseType(typeof(void))]
         public IHttpActionResult PutPhones(int id, Phones phones)
         {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
+            //if (!ModelState.IsValid)
+            //{
+            //    return BadRequest(ModelState);
+            //}
 
-            if (id != phones.id_phone)
-            {
-                return BadRequest();
-            }
+            //if (id != phones.id_phone)
+            //{
+            //    return BadRequest();
+            //}
 
-            db.Entry(phones).State = EntityState.Modified;
+            //db.Entry(phones).State = EntityState.Modified;
 
+            //try
+            //{
+            //    db.SaveChanges();
+            //}
+            //catch (DbUpdateConcurrencyException)
+            //{
+            //    if (!PhonesExists(id))
+            //    {
+            //        return NotFound();
+            //    }
+            //    else
+            //    {
+            //        throw;
+            //    }
+            //}
+
+            var dbPhones = db.Phones.FirstOrDefault(x => x.id_phone.Equals(id));
+
+            dbPhones.manufacturer = phones.manufacturer;
+            dbPhones.model = phones.model;
+            dbPhones.colour = phones.colour;
+            dbPhones.price = phones.price;
+            dbPhones.image = phones.image;
             try
             {
                 db.SaveChanges();
@@ -100,6 +123,18 @@ namespace Pigalev_API.Controllers
             db.SaveChanges();
 
             return Ok(phones);
+        }
+
+        // DELETE: api/Phones
+        [ResponseType(typeof(Phones))]
+        public IHttpActionResult DeletePhones()
+        {
+            foreach (Phones p in db.Phones.ToList())
+            {
+                db.Phones.Remove(p);
+            }
+            db.SaveChanges();
+            return Ok();
         }
 
         protected override void Dispose(bool disposing)
