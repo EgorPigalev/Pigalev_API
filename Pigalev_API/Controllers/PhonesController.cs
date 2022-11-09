@@ -87,7 +87,7 @@ namespace Pigalev_API.Controllers
             switch (fieldSort)
             {
                 case ("manufacturer"):
-                    if (valueSort == "возрастание")
+                    if (valueSort == "ascending")
                     {
                         phones = phones.OrderBy(x => x.manufacturer).ToList();
 
@@ -98,7 +98,7 @@ namespace Pigalev_API.Controllers
                     }
                     break;
                 case ("model"):
-                    if (valueSort == "возрастание")
+                    if (valueSort == "ascending")
                     {
                         phones = phones.OrderBy(x => x.model).ToList();
 
@@ -109,7 +109,7 @@ namespace Pigalev_API.Controllers
                     }
                     break;
                 case ("colour"):
-                    if (valueSort == "возрастание")
+                    if (valueSort == "ascending")
                     {
                         phones = phones.OrderBy(x => x.colour).ToList();
 
@@ -120,7 +120,7 @@ namespace Pigalev_API.Controllers
                     }
                     break;
                 case ("price"):
-                    if (valueSort == "возрастание")
+                    if (valueSort == "ascending")
                     {
                         phones = phones.OrderBy(x => x.price).ToList();
 
